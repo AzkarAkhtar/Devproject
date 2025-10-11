@@ -6,11 +6,7 @@ const app = express();
 app.use(express.json())
 
 app.post("/signup", async (req, res) => {
-    const User1 = new User({
-        firstName : "Azk",
-        lastName : "Akh",
-        age : 28
-    });
+    const User1 = new User(req.body);
 
     await User1.save();
     res.send("new data added");
