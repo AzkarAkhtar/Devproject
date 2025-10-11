@@ -18,12 +18,28 @@ app.get("/feed", async (req, res) => {
     const getuser = await User.find();
     res.send(getuser);
 
-})
+});
 
 app.get("/lastname", async(req, res) => {
     const getlast = req.body.lastName;
     res.send(await User.find({lastName : getlast}));
-})
+});
+
+app.patch("/firstname", async(req, res) => {
+    const id1 = req.body.id;
+    const updatefirst = req.body;
+    console.log(id1);
+    await User.findByIdAndUpdate(id1, updatefirst);
+    res.send("updated");
+});
+
+app.delete("/delete", async(req, res) => {
+    const id1 = req.body.id;
+    const updatefirst = req.body;
+    console.log(id1);
+    await User.findByIdAndDelete(id1, updatefirst);
+    res.send("deleted");
+});
 
 connectDB()
 .then( ()=> {
