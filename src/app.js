@@ -14,6 +14,17 @@ app.post("/signup", async (req, res) => {
 
 });
 
+app.get("/feed", async (req, res) => {
+    const getuser = await User.find();
+    res.send(getuser);
+
+})
+
+app.get("/lastname", async(req, res) => {
+    const getlast = req.body.lastName;
+    res.send(await User.find({lastName : getlast}));
+})
+
 connectDB()
 .then( ()=> {
     console.log("connected");
